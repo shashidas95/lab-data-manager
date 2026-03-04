@@ -1,6 +1,21 @@
 
 services:
-  # Web Server Service
+# New Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: vue_lab_manager
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Prevents local node_modules from overwriting container
+    ports:
+      - '5173:5173'
+    depends_on:
+      - app
+    restart: unless-stopped
+
+  # Updated Nginx Service
   nginx:
     image: nginx:alpine
     container_name: nginx_lab_manager
@@ -8,11 +23,26 @@ services:
       - '8080:80'
     volumes:
       - ./src:/var/www
+      - ./frontend:/var/www/frontend # Mount frontend if you want to share files
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     depends_on:
       - app
       - db
+      - frontend
     restart: unless-stopped
+  # # Web Server Service
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: nginx_lab_manager
+  #   ports:
+  #     - '8080:80'
+  #   volumes:
+  #     - ./src:/var/www
+  #     - ./nginx/conf.d/:/etc/nginx/conf.d/
+  #   depends_on:
+  #     - app
+  #     - db
+  #   restart: unless-stopped
 
   # Database Service
   db:
@@ -55,14 +85,4 @@ services:
     restart: unless-stopped
 
 
-  # Uncomment if using PostgreSQL
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: pgAdmin
-  #   ports:
-  #     - "5050:80"
-  #   depends_on:
-  #     - db
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: admin@example.com
-  #     PGADMIN_DEFAULT_PASSWORD: password
+  

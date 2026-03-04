@@ -1,0 +1,68 @@
+
+services:
+  # Web Server Service
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_lab_manager
+    ports:
+      - '8080:80'
+    volumes:
+      - ./src:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - app
+      - db
+    restart: unless-stopped
+
+  # Database Service
+  db:
+    platform: linux/arm64/v8
+    image: mysql
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: lab_data_manager
+      MYSQL_ROOT_PASSWORD: shashi
+
+  # Application Service
+  app:
+    container_name: app
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/var/www
+    ports:
+      - '9000:9000'
+    working_dir: /var/www
+    restart: unless-stopped
+
+  # phpMyAdmin Service
+  phpmyadmin:
+    platform: linux/amd64
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - '3400:80'
+    depends_on:
+      - db
+    restart: unless-stopped
+
+
+  # Uncomment if using PostgreSQL
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgAdmin
+  #   ports:
+  #     - "5050:80"
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@example.com
+  #     PGADMIN_DEFAULT_PASSWORD: password

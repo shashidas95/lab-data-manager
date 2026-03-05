@@ -1,0 +1,8 @@
+\App\Models\Parameter::first()->unit->name;
+\App\Models\Parameter::count();
+\App\Models\Unit::count();
+\App\Models\Parameter::count();
+\App\Models\Unit::count();
+\App\Models\Parameter::count();
+\App\Models\Unit::count();
+\App\Models\Parameter::first()->unit->name;

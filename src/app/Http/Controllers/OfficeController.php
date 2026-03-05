@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Office;
+use Illuminate\Http\Request;
+
+class OfficeController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return response()->json(\App\Models\Office::all());
+    }
+ /**
+     * Store a newly created resource in storage.
+     */
+
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'code' => 'required|string|unique:offices',
+            'location' => 'nullable|string',
+            'contact_email' => 'nullable|email',
+        ]);
+
+        $office = Office::create($validated);
+        return response()->json($office, 201);
+    }
+
+
+
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Office $office)
+    {
+        return response()->json($office->load('labs'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}

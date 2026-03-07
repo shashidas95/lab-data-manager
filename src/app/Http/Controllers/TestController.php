@@ -31,7 +31,21 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'sample_id' => 'required|exists:lab_samples,id',
+            'results' => 'required|array',
+            'results.*.parameter_id' => 'required|exists:parameters,id',
+            'results.*.value' => 'required'
+        ]);
+
+        foreach ($validated['results'] as $result) {
+            \App\Models\Test::updateOrCreate(
+                ['sample_id' => $validated['sample_id'], 'parameter_id' => $result['parameter_id']],
+                ['value' => $result['value'], 'recorded_at' => now()]
+            );
+        }
+
+        return response()->json(['message' => 'Results saved successfully']);
     }
 
     /**

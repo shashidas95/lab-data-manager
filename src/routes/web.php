@@ -9,7 +9,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::apiResource('labs', LabController::class);
-Route::apiResource('units', UnitController::class);
-Route::apiResource('parameters', ParameterController::class);
-Route::apiResource('tests', TestController::class);
+

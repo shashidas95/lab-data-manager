@@ -27,3 +27,5 @@ Route::apiResource('units', UnitController::class);
 Route::apiResource('parameters', ParameterController::class);
 Route::apiResource('tests', TestController::class);
 Route::apiResource('samples', LabSampleController::class);
+// routes/api.php
+Route::get('public/verify/{id}', [App\Http\Controllers\LabSampleController::class, 'showPublic']);

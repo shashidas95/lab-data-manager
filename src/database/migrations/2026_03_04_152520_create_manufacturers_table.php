@@ -14,12 +14,13 @@ return new class extends Migration
     Schema::create('manufacturers', function (Blueprint $table) {
                 $table->id();
                 $table->string('name');
-                $table->string('country')->nullable(); // Added
+                $table->string('address')->nullable(); // Added
                 $table->string('contact_person')->nullable();
                 $table->string('email')->nullable(); // Added
-                $table->string('website')->nullable();
+                $table->string('license_number')->nullable();
                 $table->boolean('is_active')->default(true);
                 $table->timestamps();
+
             });
 
 

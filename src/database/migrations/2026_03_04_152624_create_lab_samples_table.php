@@ -12,27 +12,37 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lab_samples', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary(); // Keep this as UUID for the sample itself
+            $table->string('sample_number')->unique();
 
-            $table->foreignId('office_id')->constrained()->onDelete('cascade');
+            // FIXED: Changed foreignUuid to foreignId to match parent tables
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->foreignId('lab_id')->constrained()->onDelete('cascade');
+            $table->foreignId('manufacturer_id')->constrained()->onDelete('cascade');
 
-            $table->string('collection_place');
-            $table->date('sample_submission_date');
+            // Production Details
+            $table->string('batch_number')->index();
+            $table->date('production_date')->nullable();
+            $table->date('expiry_date')->nullable();
+            $table->string('brand')->nullable();
 
-            $table->integer('total_sample_submitted');
-            $table->integer('pass_sample_count')->default(0);
-            $table->integer('fail_sample_count')->default(0);
-            $table->integer('pending_sample_count')->default(0);
+            // Product Attributes
+            $table->string('variant')->nullable();
+            $table->string('flavour')->nullable();
+            $table->string('color')->nullable();
+            $table->string('type')->nullable();
 
-            $table->enum('status', ['pass', 'fail', 'pending'])->default('pending');
+            // Quantity and Volume
+            $table->integer('sample_quantity')->default(1);
+            $table->string('collected_amount')->nullable();
 
-            $table->text('action_taken')->nullable();
-
+            // Status and Logistics
+            $table->string('status')->default('received');
+            $table->string('priority')->default('normal');
+            $table->timestamp('received_at')->useCurrent();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

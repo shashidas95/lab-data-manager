@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 
 class DatabaseSeeder extends Seeder
@@ -14,18 +15,25 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            OfficeSeeder::class,     // Must be first
-            LabSeeder::class,         // Depends on Office
-            UnitSeeder::class,        // Foundation
-            ParameterSeeder::class,   // Depends on Unit
-            TestSeeder::class,        // Independent (for now)
-            ManufacturerSeeder::class, // Foundation
-            ProductSeeder::class,     // Depends on Manufacturer
+            // Level 1: Independent Tables
+            OfficeSeeder::class,
+            UnitSeeder::class,
+            ManufacturerSeeder::class,
+
+            // Level 2: Depend on Level 1
+            LabSeeder::class,        // Needs Office
+            ProductSeeder::class,    // Needs Manufacturer
+            ParameterSeeder::class,  // Needs Unit
+
+            // Level 3: Depend on Level 2
+            TestSeeder::class,       // Needs Parameters
+            SampleSeeder::class,     // Needs Product, Lab, Manufacturer
+
         ]);
 
-        // User::factory()->create([
-        //     'name' => 'Shashi',
-        //     'email' => 'shashidas95@gmail.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Shashi',
+            'email' => 'shashidas95@gmail.com',
+        ]);
     }
 }

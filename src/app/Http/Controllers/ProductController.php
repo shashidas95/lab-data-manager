@@ -12,7 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return response()->json(\App\Models\Product::with('manufacturer')->get());
+        // return response()->json(\App\Models\Product::with('manufacturer')->get());
+        return Product::with('manufacturer')->latest()->get();
     }
 
 

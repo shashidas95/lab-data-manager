@@ -3,29 +3,63 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LabSample extends Model
 {
+    use HasUuids;
+
+    protected $table = 'lab_samples';
+
     protected $fillable = [
-        'office_id',
+        'sample_number',
         'product_id',
-        'collection_place',
-        'sample_submission_date',
-        'total_sample_submitted',
-        'pass_sample_count',
-        'fail_sample_count',
-        'pending_sample_count',
+        'lab_id',
+        'manufacturer_id',
+        'batch_number',
+        'production_date',
+        'expiry_date',
+        'brand',
+        'variant',
+        'flavour',
+        'color',
+        'type',
+        'sample_quantity',
+        'collected_amount',
         'status',
-        'action_taken'
+        'priority',
+        'received_at'
     ];
 
-    public function office()
+    protected $casts = [
+        'production_date' => 'date',
+        'expiry_date' => 'date',
+        'received_at' => 'datetime',
+    ];
+
+    /**
+     * FIX: This was missing and caused your 500 error!
+     */
+    public function lab(): BelongsTo
     {
-        return $this->belongsTo(Office::class);
+        return $this->belongsTo(Lab::class);
     }
 
-    public function product()
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
+
+    /**
+     * Direct relationship to manufacturer
+     */
+    public function manufacturer(): BelongsTo
+    {
+        return $this->belongsTo(Manufacturer::class);
+    }
+
+    // Note: You had an office() method, but no office_id in $fillable.
+    // If samples belong to a lab, and labs belong to an office,
+    // you usually access office THROUGH the lab.
 }

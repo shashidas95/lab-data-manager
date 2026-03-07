@@ -9,11 +9,24 @@ class ManufacturerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     */ public function run(): void
+     */
+    // database/seeders/ManufacturerSeeder.php
+
+    public function run(): void
     {
         $manufacturers = [
-            ['name' => 'Sigma-Aldrich', 'country' => 'USA', 'email' => 'sales@sigma.com', 'is_active' => true],
-            ['name' => 'Merck Group', 'country' => 'Germany', 'email' => 'info@merck.com', 'is_active' => true],
+            [
+                'name' => 'Sigma-Aldrich',
+                'address' => 'USA', // Change 'country' to 'address'
+                'email' => 'sales@sigma.com',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Merck Group',
+                'address' => 'Germany', // Change 'country' to 'address'
+                'email' => 'info@merck.com',
+                'is_active' => true
+            ],
         ];
 
         foreach ($manufacturers as $m) {

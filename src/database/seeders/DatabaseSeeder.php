@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             TestSeeder::class,       // Needs Parameters
             SampleSeeder::class,     // Needs Product, Lab, Manufacturer
 
+            // BSTI Employees
+            BstiEmployeeSeeder::class,
         ]);
 
         User::factory()->create([

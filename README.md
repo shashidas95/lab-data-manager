@@ -195,3 +195,13 @@ docker compose exec app chmod -R 777 storage bootstrap/cache
 
 #### 4. Frontend hot reload fails (Vite WebSocket)
 Ensure that Vite is run with `--host` to bind to internal Docker interfaces. This is configured automatically inside `frontend/Dockerfile` (`CMD ["npm", "run", "dev", "--", "--host"]`).
+
+#### 5. Address already in use / Port 5173 is bound
+If port `5173` is already in use on your host machine (e.g., by another local project or local Vite process), you can customize the mapped frontend host port using the `FRONTEND_PORT` environment variable before running Docker Compose:
+```bash
+FRONTEND_PORT=5174 docker compose up -d
+```
+Alternatively, you can define it in a `.env` file at the root of the repository:
+```env
+FRONTEND_PORT=5174
+```

@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BdsFoodStandardController;
+use App\Http\Controllers\FoodSampleController;
 
 
 Route::get('/user', function (Request $request) {
@@ -27,5 +29,13 @@ Route::apiResource('units', UnitController::class);
 Route::apiResource('parameters', ParameterController::class);
 Route::apiResource('tests', TestController::class);
 Route::apiResource('samples', LabSampleController::class);
+
+// BSTI Chemical & Food Wing API endpoints
+Route::apiResource('bds-food-standards', BdsFoodStandardController::class);
+Route::apiResource('food-samples', FoodSampleController::class);
+Route::put('food-samples/{id}/status', [FoodSampleController::class, 'updateStatus']);
+Route::post('food-samples/{id}/results', [FoodSampleController::class, 'recordResults']);
+
 // routes/api.php
 Route::get('public/verify/{id}', [App\Http\Controllers\LabSampleController::class, 'showPublic']);
+Route::get('public/verify/food/{code}', [FoodSampleController::class, 'verifyPublic']);

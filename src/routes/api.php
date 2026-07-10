@@ -58,3 +58,17 @@ Route::get('certifications/applications', [App\Http\Controllers\CertificationCon
 Route::post('certifications/applications', [App\Http\Controllers\CertificationController::class, 'submitApplication']);
 Route::put('certifications/applications/{id}/status', [App\Http\Controllers\CertificationController::class, 'updateApplicationStatus']);
 Route::post('certifications/audits', [App\Http\Controllers\CertificationController::class, 'recordAudit']);
+
+// Certification Marks (CM) wing approval workflow design endpoints
+Route::get('cm/applications', [App\Http\Controllers\CmWorkflowController::class, 'listApplications']);
+Route::get('cm/applications/{id}', [App\Http\Controllers\CmWorkflowController::class, 'show']);
+Route::post('cm/applications', [App\Http\Controllers\CmWorkflowController::class, 'submitApplication']);
+Route::put('cm/applications/{id}/forward', [App\Http\Controllers\CmWorkflowController::class, 'forward']);
+Route::put('cm/applications/{id}/shortfall', [App\Http\Controllers\CmWorkflowController::class, 'reportShortfall']);
+Route::put('cm/applications/{id}/rectify', [App\Http\Controllers\CmWorkflowController::class, 'rectifyShortfall']);
+Route::put('cm/applications/{id}/inspection', [App\Http\Controllers\CmWorkflowController::class, 'recordInspection']);
+Route::put('cm/applications/{id}/formal-inspection', [App\Http\Controllers\CmWorkflowController::class, 'recordFormalInspection']);
+Route::put('cm/applications/{id}/test-compile', [App\Http\Controllers\CmWorkflowController::class, 'compileTestReport']);
+Route::put('cm/applications/{id}/dd-verify', [App\Http\Controllers\CmWorkflowController::class, 'ddVerify']);
+Route::put('cm/applications/{id}/committee-review', [App\Http\Controllers\CmWorkflowController::class, 'committeeReview']);
+Route::put('cm/applications/{id}/payment', [App\Http\Controllers\CmWorkflowController::class, 'completePayment']);

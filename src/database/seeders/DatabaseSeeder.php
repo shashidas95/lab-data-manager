@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
             TestSeeder::class,       // Needs Parameters
             SampleSeeder::class,     // Needs Product, Lab, Manufacturer
 
+            // BSTI Food Standards Seeder
+            BdsFoodStandardSeeder::class,
+
             // BSTI Employees
             BstiEmployeeSeeder::class,
         ]);

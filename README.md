@@ -197,11 +197,9 @@ docker compose exec app chmod -R 777 storage bootstrap/cache
 Ensure that Vite is run with `--host` to bind to internal Docker interfaces. This is configured automatically inside `frontend/Dockerfile` (`CMD ["npm", "run", "dev", "--", "--host"]`).
 
 #### 5. Address already in use / Port 5173 is bound
-If port `5173` is already in use on your host machine (e.g., by another local project or local Vite process), you can customize the mapped frontend host port using the `FRONTEND_PORT` environment variable before running Docker Compose:
-```bash
-FRONTEND_PORT=5174 docker compose up -d
-```
-Alternatively, you can define it in a `.env` file at the root of the repository:
-```env
-FRONTEND_PORT=5174
-```
+To completely prevent host port conflicts (e.g., if you already have a local Vite or Node service running on port `5173` on your host), we have **removed the direct host port mapping** for the frontend container in `docker-compose.yml`.
+
+Since the Nginx reverse proxy service (`nginx_lab_manager`) already handles proxying all frontend requests and hot-reload WebSockets to the frontend container over the internal Docker network on port `8080`, you should always access the application through the main gateway:
+- **Frontend Gateway:** [http://localhost:8080](http://localhost:8080)
+
+This ensures you will never experience any "address already in use" port conflicts on port `5173`!

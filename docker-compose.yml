@@ -9,8 +9,6 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules # Prevents local node_modules from overwriting container
-    ports:
-      - '${FRONTEND_PORT:-5173}:5173'
     depends_on:
       - app
     restart: unless-stopped

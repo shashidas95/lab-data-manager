@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class BstiEmployeeSeeder extends Seeder
 {
@@ -12,29 +13,105 @@ class BstiEmployeeSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seed some representative BSTI Chemist / Scientist / Auditor employees
         $employees = [
-            [
-                'name' => 'Dr. Rahman',
-                'email' => 'dr.rahman@bsti.gov.bd',
-                'password' => bcrypt('password'),
-            ],
-            [
-                'name' => 'Mrs. Sultana',
-                'email' => 'sultana.chem@bsti.gov.bd',
-                'password' => bcrypt('password'),
-            ],
-            [
-                'name' => 'Mr. Haque',
-                'email' => 'haque.qc@bsti.gov.bd',
-                'password' => bcrypt('password'),
-            ],
+            ['name' => 'জনাব ফজ!র রহমান শাসিনক অিফসার', 'employee_id' => '19611010001'],
+            ['name' => 'জনাব মাঃ আিজ&ল হক শাসিনক অিফসার', 'employee_id' => '19651010002'],
+            ['name' => 'জনাব শাম)ল আলম ভা+ার কম কত া', 'employee_id' => '19771010003'],
+            ['name' => 'জনাব মাঃ রিফক শাসিনক অিফসার', 'employee_id' => '19801010004'],
+            ['name' => 'জনাব মাঃ খিল!র রহমান সম/য় কম কত া', 'employee_id' => '19901010005'],
+            ['name' => 'জনাব মাঃ তােহর জািমল সম/য় কম কত া', 'employee_id' => '19941010006'],
+            ['name' => 'জনাব মাহা2দ মা)দ হাসান সহকাির পিরচালক', 'employee_id' => '20061010007'],
+            ['name' => 'জনাব অিসত বড়ুয়া সহকাির পিরচালক', 'employee_id' => '20061010008'],
+            ['name' => 'জনাব মা:শিফ8ল islam ভা+ার কম কত া', 'employee_id' => '20061010009'],
+            ['name' => 'জনাব মাঃ 9িহন আহেমদ সহকারী আইন কম কত া', 'employee_id' => '20061010010'],
+            ['name' => 'জনাব মাহা2দ তৗিহ;র রহমান পিরসং<ানিবদ', 'employee_id' => '20061010011'],
+            ['name' => 'জনাব এম.এ. মিতন িসি>কী সহকারী িনরাপ?া কম কত া', 'employee_id' => '20071010012'],
+            ['name' => 'জনাব মাঃ জািকর হােসন িসিনয়র কি@উটার অপােরটর', 'employee_id' => '20111010013'],
+            ['name' => 'জনাব মাঃ মেহদী হাসান িবBাস ভা+ার কম কত া', 'employee_id' => '20121010014'],
+            ['name' => 'জনাব শাহীন )লতানা াCামার', 'employee_id' => '20121010015'],
+            ['name' => 'জনাব আশরাDEামান বাF সহকারী আইন কম কত া', 'employee_id' => '20221010016'],
+            ['name' => 'জনাব পাG সরকার সহকারী পিরচালক', 'employee_id' => '20221010017'],
+            ['name' => 'জনাব আF ইউ)ফ সহকারী পিরচালক', 'employee_id' => '20231010018'],
+            ['name' => 'জনাব মাঃ মইHল হাসাইন সম/য় কম কত া', 'employee_id' => '20241010019'],
+            ['name' => 'জনাব মাঃ মােজদ আলী পিরসং<ানিবদ', 'employee_id' => '20241010020'],
+            ['name' => 'জনাব মা: মাইHল islam পরীIক, শাসন উইং', 'employee_id' => '20241010021'],
+            ['name' => 'জনাব আকাশ কম কার পিরসং<ানিবদ', 'employee_id' => '20251010022'],
+            ['name' => 'জনাব J, ইউ, আহেমদ পরীIক (Kিষ ও খাN)', 'employee_id' => '19562010001'],
+            ['name' => 'জনাব আ ফ ম শাম)ল আেবদীন পরীIক (Kিষ ও খাN)', 'employee_id' => '19662010002'],
+            ['name' => 'জনাব শওকত আহেমদ সহকারী পিরচালক (Kিষ ও খাN)', 'employee_id' => '19712010003'],
+            ['name' => 'জনাব মাঃ আরsha;ল হক khan উO তন পরীIক (টPটাইল)', 'employee_id' => '19792010004'],
+            ['name' => 'জনাব মাঃ িফেরাজ িময়া উO তন পরীIক (েকৗশল)', 'employee_id' => '19792010005'],
+            ['name' => 'জনাব !ৎDর রহমান পরীIক', 'employee_id' => '19812010006'],
+            ['name' => 'জনাব মাঃ আখতাREামান উO তন পরীIক', 'employee_id' => '19832010007'],
+            ['name' => 'জনাব শিফ8র রহমান উপপিরচালক', 'employee_id' => '19842010008'],
+            ['name' => 'জনাব মিফ;ল islam পরীIক (Kিষ ও খাN)', 'employee_id' => '19842010009'],
+            ['name' => 'জনাব মফেছর আলী সরকার উO তন পরীIক (িব;Tৎ)', 'employee_id' => '19852010010'],
+            ['name' => 'জনাব মাঃ ফির;ল আলম উO তন পরীIক', 'employee_id' => '19872010011'],
+            ['name' => 'জনাব khan মাহা2দ আকরাম হােসন উO তন পরীIক (েকৗশল)', 'employee_id' => '19882010012'],
+            ['name' => 'জনাব মাঃ রজাউল কিরম উO তন পরীIক (িব;Tৎ)', 'employee_id' => '19882010013'],
+            ['name' => 'জনাব এস, এম, ওয়ািহ;Eামান পরীIক (েকৗশল)', 'employee_id' => '19882010014'],
+            ['name' => 'জনাব মাঃ সাEা;ল বারী পরীIক (িব;Tৎ)', 'employee_id' => '19882010015'],
+            ['name' => 'জনাব মেহদী আUার রানা সহকারী পিরচালক (েকৗশল)', 'employee_id' => '19882010016'],
+            ['name' => 'জনাব মাহা2দ আেখর পরীIক (পাট ও বV)', 'employee_id' => '19882010017'],
+            ['name' => 'জনাব িন!ফা হক পরীIক (পাট ও বV)', 'employee_id' => '19902010018'],
+            ['name' => 'জনাব তাইউব আলী সরকার স@াদক', 'employee_id' => '19902010019'],
+            ['name' => 'জনাব মাঃ সাই;ল islam পরীIক (েকৗশল)', 'employee_id' => '19942010020'],
+            ['name' => 'জনাব মাঃ িফেরাজ আলম পরীIক (িব;Tৎ)', 'employee_id' => '19942010021'],
+            ['name' => 'জনাব তালাত )লতানা পরীIক (রসায়ণ)', 'employee_id' => '19942010022'],
+            ['name' => 'জনাব গালাম মাঃ সরওয়ার পরীIক (Kিষ ও খাN)', 'employee_id' => '19992010023'],
+            ['name' => 'জনাব জXরা িসকদার পরীIক (রসায়ন)', 'employee_id' => '20002010024'],
+            ['name' => 'জনাব রিহমা তা!কদার পরীIক (িব;Tৎ)', 'employee_id' => '20002010025'],
+            ['name' => 'জনাব িদল রািফয়া হাসান পরীIক (পাট ও বV)', 'employee_id' => '20002010026'],
+            ['name' => 'জনাব মাঃ মাYন খােলদ পরীIক (ইঃইঃ ও কািরগির)', 'employee_id' => '20072010027'],
+            ['name' => 'জনাব মাঃ Yরসালীন মাহDজ পরীIক (Zরঃ ও য[)', 'employee_id' => '20072010028'],
+            ['name' => 'জনাব জয়\ দাস পরীIক (িব;Tৎ)', 'employee_id' => '20072010029'],
+            ['name' => 'জনাব মাঃ মাজাে2ল হােসন ব8ল স@াদক', 'employee_id' => '20072010030'],
+            ['name' => 'জনাব এনাYল হক পরীIক (Kিষ ও খাN)', 'employee_id' => '20102010031'],
+            ['name' => 'জনাব মাহাD&ল কােদর িময়া পরীIক (পাট ও বV)', 'employee_id' => '20102010032'],
+            ['name' => 'জনাব রােজস সাহা পরীIক (রসায়ন)', 'employee_id' => '20102010033'],
+            ['name' => 'জনাব মঈH>ীন িময়া স@াদক', 'employee_id' => '20122010034'],
+            ['name' => 'জনাব মাঃ আিতক উ^াহ পরীIক (ইঃইঃ ও কািরগির)', 'employee_id' => '20152010035'],
+            ['name' => 'জনাব ইসমাত জাহান পরীIক (Kিষ ও খাN)', 'employee_id' => '20152010036'],
+            ['name' => 'জনাব িরY দাস পরীIক (পাট ও বV)', 'employee_id' => '20152010037'],
+            ['name' => 'জনাব উেমরা সারজানা পরীIক (Zরঃ ও য[)', 'employee_id' => '20152010038'],
+            ['name' => 'জনাব মাঃ ম_&Rল কিরম পরীIক (রসায়ন)', 'employee_id' => '20152010039'],
+            ['name' => 'জনাব হািবFর রহমান khan পরীIক (পাট ও বV)', 'employee_id' => '20192010040'],
+            ['name' => 'জনাব মাঃ সা>াম হােসন khan পরীIক (পাট ও বV)', 'employee_id' => '20192010041'],
+            ['name' => 'জনাব Yহা2দ এখলাছ উ>ীন পরীIক (Kিষ ও খাN)', 'employee_id' => '20192010042'],
+            ['name' => 'জনাব ম`র রহমান পরীIক (রসায়ন)', 'employee_id' => '20192010043'],
+            ['name' => 'জনাব মাঃ িলটন িমঞা পরীIক (Kিষ ও খাN)', 'employee_id' => '20222010044'],
+            ['name' => 'জনাব মাঃ তাহিসন মাহYদ পরীIক (Zরঃ ও য[)', 'employee_id' => '20222010045'],
+            ['name' => 'জনাব মাহা2দ জািকর হাসাইন পরীIক (Zরঃ ও য[)', 'employee_id' => '20222010046'],
+            ['name' => 'জনাব &বােয়র আহেমদ পরীIক (রসায়ন)', 'employee_id' => '20222010047'],
+            ['name' => 'জনাব নীপা সরকার পরীIক (ইঃইঃ ও কািরগির)', 'employee_id' => '20232010048'],
+            ['name' => 'জনাব মাহা2দ সাহাHর রহমান পরীIক (পাট ও বV)', 'employee_id' => '20242010049'],
+            ['name' => 'জনাব শামীম khan পরীIক (পাট ও বV)', 'employee_id' => '20242010050'],
+            ['name' => 'জনাব মাহদী উল islam পরীIক (ইঃইঃ ও কািরগির)', 'employee_id' => '20252010051'],
+            ['name' => 'জনাব মাঃ ইমরান সরকার পরীIক (Kিষ ও খাN)', 'employee_id' => '20252010052'],
+            ['name' => 'জনাব মাঃ রািকব হাসান রিন পরীIক (রসায়ন)', 'employee_id' => '20252010053'],
+            ['name' => 'জনাব আb^a-আল মাcদী হাসান পরীIক (রসায়ণ)', 'employee_id' => '20252010054'],
+            ['name' => 'জনাব আFল বাশার khan িফd অিফসার', 'employee_id' => '19573010001'],
+            ['name' => 'জনাব মাঃ HRল islam িফd অিফসার', 'employee_id' => '19643010002'],
+            ['name' => 'জনাব এস, এফ, এ, সােলহীন িফd অিফসার', 'employee_id' => '19673010003'],
+            ['name' => 'জনাব হািবFর রব ম&মদার িফd অিফসার', 'employee_id' => '19783010004'],
+            ['name' => 'জনাব !ৎDর রহমান িফd অিফসার', 'employee_id' => '19853010005'],
+            ['name' => 'জনাব মাঃ শরীDল আলম িফd অিফসার', 'employee_id' => '19883010006'],
         ];
 
-        foreach ($employees as $employee) {
-            User::firstOrCreate(
-                ['email' => $employee['email']],
-                $employee
+        $defaultPassword = Hash::make('password');
+
+        foreach ($employees as $emp) {
+            // Generate a safe unique email based on the employee ID
+            $email = "emp" . $emp['employee_id'] . "@bsti.gov.bd";
+
+            User::updateOrCreate(
+                ['employee_id' => $emp['employee_id']],
+                [
+                    'name' => $emp['name'],
+                    'email' => $email,
+                    'password' => $defaultPassword,
+                    'email_verified_at' => now(),
+                ]
             );
         }
     }

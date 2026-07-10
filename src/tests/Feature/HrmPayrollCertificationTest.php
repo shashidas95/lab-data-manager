@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Database\Seeders\DatabaseSeeder;
 use App\Models\User;
 use App\Models\EmployeeProfile;
 use App\Models\LeaveRequest;
@@ -19,11 +20,10 @@ class HrmPayrollCertificationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        // Create a test user
-        $this->user = User::factory()->create([
-            'name' => 'BSTI Admin',
-            'email' => 'admin@bsti.gov.bd',
-        ]);
+        $this->seed(DatabaseSeeder::class);
+
+        // Find seeded user Shashi for test cases
+        $this->user = User::where('email', 'shashidas95@gmail.com')->first();
     }
 
     public function test_can_create_and_query_employee_profile()
@@ -125,6 +125,34 @@ class HrmPayrollCertificationTest extends TestCase
         $this->assertDatabaseHas('payroll_records', [
             'employee_id' => $profile->id,
             'net_salary' => 71000.00,
+        ]);
+    }
+
+    public function test_certification_demo_data_is_seeded_successfully()
+    {
+        // Assert standard certification applications exist from DemoCertificationSeeder
+        $this->assertDatabaseHas('certification_applications', [
+            'application_type' => 'CM_License',
+            'product_name' => 'Demo Ghee Product',
+        ]);
+
+        $this->assertDatabaseHas('certification_applications', [
+            'application_type' => 'Halal_Cert',
+            'product_name' => 'Pure Mango Chutney',
+        ]);
+
+        $this->assertDatabaseHas('certification_applications', [
+            'application_type' => 'MSC_Cert',
+            'product_name' => 'Refined Granulated Sugar',
+        ]);
+
+        // Assert audits were seeded
+        $this->assertEquals(3, AuditRecord::count());
+
+        // Assert a detailed CM workflow demo application is seeded
+        $this->assertDatabaseHas('cm_license_applications', [
+            'product_name' => 'Demo Premium Mustard Oil',
+            'status' => 'Primary_Inspection',
         ]);
     }
 

@@ -34,11 +34,18 @@ class DatabaseSeeder extends Seeder
 
             // BSTI Employees
             BstiEmployeeSeeder::class,
+
+            // Demo Certifications and Workflows Seeder
+            DemoCertificationSeeder::class,
         ]);
 
-        User::factory()->create([
-            'name' => 'Shashi',
-            'email' => 'shashidas95@gmail.com',
-        ]);
+        // Standard applicant user (FirstOrCreate to avoid duplication with DemoCertificationSeeder)
+        User::firstOrCreate(
+            ['email' => 'shashidas95@gmail.com'],
+            [
+                'name' => 'Shashi',
+                'password' => bcrypt('password'),
+            ]
+        );
     }
 }

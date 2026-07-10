@@ -25,11 +25,11 @@ class CmWorkflowTest extends TestCase
         parent::setUp();
         $this->seed(DatabaseSeeder::class);
 
-        $this->applicant = User::factory()->create(['name' => 'Applicant User', 'email' => 'applicant@gmail.com']);
-        $this->director = User::factory()->create(['name' => 'Director CM', 'email' => 'director.cm@bsti.gov.bd']);
-        $this->dd = User::factory()->create(['name' => 'DD CM', 'email' => 'dd.cm@bsti.gov.bd']);
-        $this->ad = User::factory()->create(['name' => 'AD CM', 'email' => 'ad.cm@bsti.gov.bd']);
-        $this->inspector = User::factory()->create(['name' => 'Inspector CM', 'email' => 'inspector.cm@bsti.gov.bd']);
+        $this->applicant = User::firstOrCreate(['email' => 'applicant@gmail.com'], ['name' => 'Applicant User', 'password' => bcrypt('password')]);
+        $this->director = User::firstOrCreate(['email' => 'director.cm@bsti.gov.bd'], ['name' => 'Director CM', 'password' => bcrypt('password')]);
+        $this->dd = User::firstOrCreate(['email' => 'dd.cm@bsti.gov.bd'], ['name' => 'DD CM', 'password' => bcrypt('password')]);
+        $this->ad = User::firstOrCreate(['email' => 'ad.cm@bsti.gov.bd'], ['name' => 'AD CM', 'password' => bcrypt('password')]);
+        $this->inspector = User::firstOrCreate(['email' => 'inspector.cm@bsti.gov.bd'], ['name' => 'Inspector CM', 'password' => bcrypt('password')]);
 
         $this->standard = BdsFoodStandard::first();
     }

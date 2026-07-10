@@ -24,6 +24,9 @@ const router = createRouter({
     { path: '/products', name: 'products', component: ProductList },
     { path: '/samples', name: 'samples', component: SampleList },
     { path: '/scan', name: 'scan', component: ScanMode },
+    { path: '/food-samples', name: 'food-samples', component: () => import('../views/food/FoodSamples.vue') },
+    { path: '/food-worksheet/:id', name: 'food-worksheet', component: () => import('../views/food/FoodWorksheet.vue') },
+    { path: '/food-verify', name: 'food-verify', component: () => import('../views/food/FoodVerify.vue') },
     {
       path: '/verify/:id',
       name: 'public-verify',

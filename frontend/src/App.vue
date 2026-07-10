@@ -20,6 +20,10 @@
         <SidebarLink to="/tests" icon="fas fa-microscope" label="Test Definitions" />
         <SidebarLink to="/parameters" icon="fas fa-list-check" label="Parameters" />
 
+        <div class="pt-4 pb-2 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">BSTI Chemical & Food</div>
+        <SidebarLink to="/food-samples" icon="fas fa-apple-whole" label="BDS Food Samples" />
+        <SidebarLink to="/food-verify" icon="fas fa-certificate" label="Verify B-Codes" />
+
         <div class="pt-4 pb-2 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Setup</div>
         <SidebarLink to="/labs" icon="fas fa-building" label="Lab Facilities" />
         <SidebarLink to="/offices" icon="fas fa-map-marker-alt" label="Offices" />

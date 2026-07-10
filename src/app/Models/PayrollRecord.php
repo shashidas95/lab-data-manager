@@ -21,6 +21,23 @@ class PayrollRecord extends Model
         'status',
     ];
 
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'base_salary' => 'float',
+            'allowance' => 'float',
+            'deductions' => 'float',
+            'net_salary' => 'float',
+            'bonus' => 'float',
+            'bank_advice_generated' => 'boolean',
+        ];
+    }
+
     public function employee()
     {
         return $this->belongsTo(EmployeeProfile::class, 'employee_id');

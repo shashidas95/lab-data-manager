@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
 
             // BSTI Food Standards Seeder
             BdsFoodStandardSeeder::class,
+
+            // BSTI Employees
+            BstiEmployeeSeeder::class,
         ]);
 
         User::factory()->create([

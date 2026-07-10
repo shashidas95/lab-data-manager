@@ -75,7 +75,7 @@ onMounted(async () => {
 });
 
 const saveResults = async () => {
-  saving.ref = true;
+  saving.value = true;
   try {
     const payload = {
       sample_id: sample.value.id,

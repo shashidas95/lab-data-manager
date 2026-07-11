@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import LandingPage from '../views/LandingPage.vue'
 import Dashboard from '../views/Dashboard.vue'
 import SampleList from '../views/samples/SampleList.vue'
 import ManufacturerList from '../views/manufacturers/ManufacturerList.vue'
@@ -14,7 +15,8 @@ import ScanMode from '../views/ScanMode.vue';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', name: 'dashboard', component: Dashboard },
+    { path: '/', name: 'landing', component: LandingPage, meta: { public: true } },
+    { path: '/dashboard', name: 'dashboard', component: Dashboard },
     { path: '/offices', name: 'offices', component: OfficeList },
     { path: '/labs', name: 'labs', component: LabList },
     { path: '/tests', name: 'tests', component: TestList },

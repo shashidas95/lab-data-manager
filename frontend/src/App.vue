@@ -1,6 +1,7 @@
 <template>
-  <div class="flex h-screen bg-slate-50 overflow-hidden">
-    <aside class="w-72 bg-white border-r border-slate-200 flex flex-col shrink-0">
+  <div class="flex h-screen bg-slate-50 overflow-hidden" :class="{ 'h-auto overflow-y-auto': isPublicRoute }">
+    <!-- Sidebar Navigation, hidden on public-facing routes like LandingPage -->
+    <aside v-if="!isPublicRoute" class="w-72 bg-white border-r border-slate-200 flex flex-col shrink-0">
       <div class="p-8 flex items-center gap-3">
         <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
           <i class="fas fa-flask text-white"></i>
@@ -9,7 +10,7 @@
       </div>
 
       <nav class="flex-grow px-4 space-y-1 overflow-y-auto">
-        <SidebarLink to="/" icon="fas fa-chart-pie" label="Dashboard" />
+        <SidebarLink to="/dashboard" icon="fas fa-chart-pie" label="Dashboard" />
 
         <div class="pt-4 pb-2 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Inventory</div>
         <SidebarLink to="/products" icon="fas fa-boxes" label="Products" />
@@ -46,7 +47,12 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import SidebarLink from '@/components/SidebarLink.vue';
+
+const route = useRoute();
+const isPublicRoute = computed(() => route.meta && route.meta.public);
 </script>
 
 <style>

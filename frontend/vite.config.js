@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path' // You might need to install 'path' or use 'fileURLToPath'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'html5-qrcode': fileURLToPath(new URL('./node_modules/html5-qrcode/cjs/index.js', import.meta.url)),
     },
   },
 })

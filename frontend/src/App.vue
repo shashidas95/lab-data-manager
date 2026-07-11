@@ -11,6 +11,7 @@
 
       <nav class="flex-grow px-4 space-y-1 overflow-y-auto">
         <SidebarLink to="/dashboard" icon="fas fa-chart-pie" label="Dashboard" />
+        <SidebarLink to="/company-info" icon="fas fa-id-card" label="Company Info" />
 
         <div class="pt-4 pb-2 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Inventory</div>
         <SidebarLink to="/products" icon="fas fa-boxes" label="Products" />

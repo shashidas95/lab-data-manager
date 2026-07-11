@@ -37,6 +37,9 @@ class DatabaseSeeder extends Seeder
 
             // Demo Certifications and Workflows Seeder
             DemoCertificationSeeder::class,
+
+            // Company Profile Seeder
+            CompanyProfileSeeder::class,
         ]);
 
         // Standard applicant user (FirstOrCreate to avoid duplication with DemoCertificationSeeder)

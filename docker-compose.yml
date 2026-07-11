@@ -10,7 +10,7 @@ services:
       - ./frontend:/app
       - /app/node_modules # Prevents local node_modules from overwriting container
     ports:
-      - '5173:5173'
+      - '5174:5173'
     depends_on:
       - app
     restart: unless-stopped
@@ -85,4 +85,3 @@ services:
     restart: unless-stopped
 
 
-  

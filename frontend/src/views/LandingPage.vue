@@ -20,10 +20,10 @@
         </nav>
 
         <div class="flex items-center gap-3">
-          <router-link to="/samples" class="px-5 py-2.5 rounded-xl text-sm font-black text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all">
+          <router-link to="/dashboard" class="px-5 py-2.5 rounded-xl text-sm font-black text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all">
             Log in
           </router-link>
-          <router-link to="/samples" class="px-5 py-2.5 rounded-xl text-sm font-black text-white bg-blue-600 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 transition-all">
+          <router-link to="/dashboard" class="px-5 py-2.5 rounded-xl text-sm font-black text-white bg-blue-600 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 transition-all">
             Register
           </router-link>
         </div>
@@ -50,7 +50,7 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <router-link to="/samples" class="w-full sm:w-auto px-8 py-4 rounded-2xl text-base font-black text-white bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-200 hover:scale-[1.02] transition-all text-center">
+              <router-link to="/dashboard" class="w-full sm:w-auto px-8 py-4 rounded-2xl text-base font-black text-white bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-200 hover:scale-[1.02] transition-all text-center">
                 Get Started
               </router-link>
               <a href="#how-it-works" class="w-full sm:w-auto px-8 py-4 rounded-2xl text-base font-black text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all text-center">
@@ -116,7 +116,7 @@
                 <span class="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-600">Halal</span>
               </div>
             </div>
-            <router-link to="/samples" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
+            <router-link to="/dashboard" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
               Login to apply <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </router-link>
           </div>
@@ -136,7 +136,7 @@
                 <span class="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-600">Reports</span>
               </div>
             </div>
-            <router-link to="/samples" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
+            <router-link to="/dashboard" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
               Login to apply <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </router-link>
           </div>
@@ -156,7 +156,7 @@
                 <span class="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-600">Energy Meters</span>
               </div>
             </div>
-            <router-link to="/samples" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
+            <router-link to="/dashboard" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
               Login to apply <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </router-link>
           </div>
@@ -176,7 +176,7 @@
                 <span class="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-600">7 Sub-types</span>
               </div>
             </div>
-            <router-link to="/samples" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
+            <router-link to="/dashboard" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
               Login to apply <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </router-link>
           </div>
@@ -196,7 +196,7 @@
                 <span class="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-600">5-level Approval</span>
               </div>
             </div>
-            <router-link to="/samples" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
+            <router-link to="/dashboard" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
               Login to apply <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </router-link>
           </div>
@@ -236,7 +236,7 @@
                 <span class="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-600">Search & Purchase</span>
               </div>
             </div>
-            <router-link to="/samples" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
+            <router-link to="/products" class="mt-6 flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 transition-colors group">
               Browse standards <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </router-link>
           </div>
@@ -361,7 +361,7 @@
           Explore our complete CM License Guide — learn which products require mandatory certification, understand the 6-step process, prepare your documents, and review the fee structure.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <router-link to="/samples" class="w-full sm:w-auto px-8 py-3.5 bg-white text-blue-600 font-black rounded-xl hover:bg-blue-50 transition-all shadow-md">
+          <router-link to="/dashboard" class="w-full sm:w-auto px-8 py-3.5 bg-white text-blue-600 font-black rounded-xl hover:bg-blue-50 transition-all shadow-md">
             Register Now
           </router-link>
           <router-link to="/food-verify" class="w-full sm:w-auto px-8 py-3.5 bg-blue-700 text-white font-black rounded-xl hover:bg-blue-800 border border-blue-500/30 transition-all">
@@ -388,9 +388,9 @@
           <h5 class="text-white text-sm font-black uppercase tracking-wider mb-4">Quick Links</h5>
           <ul class="space-y-2 text-xs">
             <li><a href="#how-it-works" class="hover:text-white transition-colors">CM License Guide</a></li>
-            <li><router-link to="/samples" class="hover:text-white transition-colors">BDS Standards Search & Sale</router-link></li>
-            <li><router-link to="/samples" class="hover:text-white transition-colors">Login</router-link></li>
-            <li><router-link to="/samples" class="hover:text-white transition-colors">Register</router-link></li>
+            <li><router-link to="/products" class="hover:text-white transition-colors">BDS Standards Search & Sale</router-link></li>
+            <li><router-link to="/dashboard" class="hover:text-white transition-colors">Login</router-link></li>
+            <li><router-link to="/dashboard" class="hover:text-white transition-colors">Register</router-link></li>
             <li><router-link to="/food-verify" class="hover:text-white transition-colors">Verify Certificate</router-link></li>
           </ul>
         </div>

@@ -32,8 +32,27 @@
         <SidebarLink to="/units" icon="fas fa-ruler" label="Measurement Units" />
       </nav>
 
-      <div class="p-6 border-t border-slate-100">
+      <div class="p-6 border-t border-slate-100 space-y-4">
         <SidebarLink to="/scan" icon="fas fa-qrcode" label="Quick Scan" class="bg-slate-900 text-white hover:bg-slate-800" />
+
+        <!-- User Profile & Logout -->
+        <div v-if="authStore.isAuthenticated && authStore.currentUser" class="pt-4 border-t border-slate-100">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-black text-sm uppercase">
+              {{ authStore.currentUser.name ? authStore.currentUser.name.charAt(0) : 'U' }}
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="text-xs font-black text-slate-800 truncate">{{ authStore.currentUser.name }}</p>
+              <p class="text-[10px] font-bold text-slate-400 truncate">{{ authStore.currentUser.email }}</p>
+            </div>
+          </div>
+          <button
+            @click="handleLogout"
+            class="w-full py-2.5 px-4 rounded-xl text-xs font-black text-rose-600 bg-rose-50 hover:bg-rose-100 transition-all flex items-center justify-center gap-2"
+          >
+            <i class="fas fa-sign-out-alt"></i> Sign Out
+          </button>
+        </div>
       </div>
     </aside>
 
@@ -49,11 +68,20 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import SidebarLink from '@/components/SidebarLink.vue';
+import { useAuthStore } from '@/stores/authStore';
 
 const route = useRoute();
+const router = useRouter();
+const authStore = useAuthStore();
+
 const isPublicRoute = computed(() => route.meta && route.meta.public);
+
+const handleLogout = async () => {
+  await authStore.logout();
+  router.push('/login');
+};
 </script>
 
 <style>

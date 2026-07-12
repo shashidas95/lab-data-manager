@@ -12,10 +12,13 @@ import LabList from '../views/labs/LabList.vue';
 import ScanMode from '../views/ScanMode.vue';
 
 
+import { useAuthStore } from '../stores/authStore'
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', name: 'landing', component: LandingPage, meta: { public: true } },
+    { path: '/login', name: 'login', component: () => import('../views/Login.vue'), meta: { public: true } },
     { path: '/dashboard', name: 'dashboard', component: Dashboard },
     { path: '/company-info', name: 'company-info', component: () => import('../views/company/CompanyInfo.vue') },
     { path: '/offices', name: 'offices', component: OfficeList },
@@ -39,6 +42,22 @@ const router = createRouter({
     }
 
   ]
+})
+
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore()
+
+  // If visiting the login page while already authenticated, redirect to dashboard
+  if (to.name === 'login' && authStore.isAuthenticated) {
+    return next({ name: 'dashboard' })
+  }
+
+  // If the route is not marked as public and user is not logged in, redirect to login page
+  if (!to.meta.public && !authStore.isAuthenticated) {
+    return next({ name: 'login' })
+  }
+
+  next()
 })
 
 export default router

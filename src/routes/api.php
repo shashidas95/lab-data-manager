@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LabSampleController;
 use App\Http\Controllers\ParameterController;
@@ -16,6 +17,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BdsFoodStandardController;
 use App\Http\Controllers\FoodSampleController;
 
+
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::get('/user', function (Request $request) {
     return $request->user();

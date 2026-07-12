@@ -17,6 +17,7 @@ const router = createRouter({
   routes: [
     { path: '/', name: 'landing', component: LandingPage, meta: { public: true } },
     { path: '/dashboard', name: 'dashboard', component: Dashboard },
+    { path: '/company-info', name: 'company-info', component: () => import('../views/company/CompanyInfo.vue') },
     { path: '/offices', name: 'offices', component: OfficeList },
     { path: '/labs', name: 'labs', component: LabList },
     { path: '/tests', name: 'tests', component: TestList },

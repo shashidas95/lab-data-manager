@@ -59,6 +59,11 @@ Route::post('certifications/applications', [App\Http\Controllers\CertificationCo
 Route::put('certifications/applications/{id}/status', [App\Http\Controllers\CertificationController::class, 'updateApplicationStatus']);
 Route::post('certifications/audits', [App\Http\Controllers\CertificationController::class, 'recordAudit']);
 
+// Company Profile Endpoints
+Route::get('company-profile', [App\Http\Controllers\CompanyProfileController::class, 'show']);
+Route::put('company-profile', [App\Http\Controllers\CompanyProfileController::class, 'update']);
+Route::post('company-profile/signature', [App\Http\Controllers\CompanyProfileController::class, 'uploadSignature']);
+
 // Certification Marks (CM) wing approval workflow design endpoints
 Route::get('cm/applications', [App\Http\Controllers\CmWorkflowController::class, 'listApplications']);
 Route::get('cm/applications/{id}', [App\Http\Controllers\CmWorkflowController::class, 'show']);
